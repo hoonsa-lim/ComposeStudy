@@ -23,6 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hoonsalim.composestudy.animation.AnimationChapter
 import com.hoonsalim.composestudy.row_column.RowColumnChapter
 import com.hoonsalim.composestudy.ui.theme.ComposeStudyTheme
 
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
     private val chapters = listOf<Chapter>(
         RowColumnChapter(),
+        AnimationChapter(),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,6 +86,7 @@ private fun HomePage(
             key = { item -> item.titleStringResourceId },
         ){
             ChapterItem(
+                modifier = Modifier.padding(bottom = 8.dp),
                 onClick = {
                     navController.navigate(it.destination)
                 },

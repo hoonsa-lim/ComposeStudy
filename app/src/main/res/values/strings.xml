@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ComposeStudy</string>
     <string name="row_column">Row/Column</string>
+    <string name="animation">Animation</string>
 </resources>
