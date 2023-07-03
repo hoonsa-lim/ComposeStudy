@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hoonsalim.composestudy.Chapter
 import com.hoonsalim.composestudy.R
+import com.hoonsalim.composestudy.ui.components.TitleAndRow
 
 @OptIn(ExperimentalAnimationApi::class)
 class AnimationSpecChapter: Chapter {
@@ -83,29 +84,6 @@ class AnimationSpecChapter: Chapter {
                             .background(Color.Blue)
                     )
                 }
-            }
-        }
-    }
-
-    @Composable
-    fun TitleAndRow(
-        modifier: Modifier,
-        title: String,
-        rowContent: @Composable RowScope.() -> Unit,
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.h5
-            )
-            Row(
-                modifier = modifier,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                rowContent.invoke(this)
             }
         }
     }

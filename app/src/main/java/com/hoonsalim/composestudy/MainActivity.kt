@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.hoonsalim.composestudy.animation.AnimationChapter
 import com.hoonsalim.composestudy.animation.AnimationSpecChapter
+import com.hoonsalim.composestudy.canvas.CanvasChapter
 import com.hoonsalim.composestudy.row_column.RowColumnChapter
 import com.hoonsalim.composestudy.ui.theme.ComposeStudyTheme
 
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
         RowColumnChapter(),
         AnimationChapter(),
         AnimationSpecChapter(),
+        CanvasChapter()
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
