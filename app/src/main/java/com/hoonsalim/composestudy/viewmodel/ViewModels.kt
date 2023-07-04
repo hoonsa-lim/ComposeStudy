@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 
 class MvvmViewModel {
     var memos by mutableStateOf("")
@@ -36,12 +38,12 @@ class LiveDataAndroidViewModel: ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        println("Android viewModel clear!!!")
+        println("LiveDataAndroidViewModel clear!!!")
     }
 }
 
 class MutableStateFlowAndroidViewModel: ViewModel() {
-    var memos = MutableStateFlow<String>("")
+    var memos = MutableStateFlow("")
 
     fun save(text: String) {
         memos.update { it + "\n\n$text" }
@@ -49,6 +51,6 @@ class MutableStateFlowAndroidViewModel: ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        println("Android viewModel clear!!!")
+        println("MutableStateFlowAndroidViewModel clear!!!")
     }
 }

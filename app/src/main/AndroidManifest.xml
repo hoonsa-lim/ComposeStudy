@@ -31,6 +31,14 @@
             android:exported="false"
             android:name=".viewmodel.AndroidViewModelActivity">
         </activity>
+        <activity
+            android:exported="false"
+            android:name=".viewmodel.LiveDataViewModelActivity">
+        </activity>
+        <activity
+            android:exported="false"
+            android:name=".viewmodel.MutableStateFlowViewModelActivity">
+        </activity>
     </application>
 
 </manifest>

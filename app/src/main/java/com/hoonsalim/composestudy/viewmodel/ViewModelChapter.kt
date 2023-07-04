@@ -38,6 +38,18 @@ class ViewModelChapter: Chapter {
             }) {
                 Text(text = "open Android ViewModel activity")
             }
+            Button(onClick = {
+                val intent = Intent(context, LiveDataViewModelActivity::class.java)
+                context.startActivity(intent)
+            }) {
+                Text(text = "open LiveData ViewModel activity")
+            }
+            Button(onClick = {
+                val intent = Intent(context, MutableStateFlowViewModelActivity::class.java)
+                context.startActivity(intent)
+            }) {
+                Text(text = "open MutableStateFlow ViewModel activity")
+            }
         }
     }
 }
