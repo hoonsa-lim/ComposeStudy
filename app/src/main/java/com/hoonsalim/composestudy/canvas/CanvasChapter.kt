@@ -1,11 +1,13 @@
 package com.hoonsalim.composestudy.canvas
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
@@ -111,9 +113,25 @@ class CanvasChapter: Chapter {
             item {
                 TitleAndRow(
                     modifier = Modifier.fillMaxWidth(),
-                    title = "DrawLine"
+                    title = "DrawRect2"
+                ){
+                    DrawRect2()
+                }
+            }
+            item {
+                TitleAndRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = "DrawLine1"
                 ){
                     DrawLine()
+                }
+            }
+            item {
+                TitleAndRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = "DrawLine2"
+                ){
+                    DrawLine2()
                 }
             }
         }
@@ -124,9 +142,12 @@ class CanvasChapter: Chapter {
         val image = ImageBitmap.imageResource(id = R.drawable.vacation)
 
         Canvas(
-            modifier = Modifier
-                .size(360.dp, 270.dp)
+            modifier = Modifier.size(360.dp)
         ) {
+            val height = this@Canvas.size.height
+            val width = this@Canvas.size.width
+
+            println("height == $height, width == $width")
             drawImage(
                 image = image,
                 topLeft = Offset(x = 0f, y = 0f),
@@ -153,9 +174,9 @@ class CanvasChapter: Chapter {
                 points.add(Offset(x.toFloat(), y))
             }
             drawPoints(
-                points = points,
+                points = points.filterIndexed { index, _ -> index % 2 == 0 },
                 strokeWidth = 3f,
-                pointMode = PointMode.Points,
+                pointMode = PointMode.Polygon,
                 color = Color.Blue
             )
         }
@@ -165,14 +186,37 @@ class CanvasChapter: Chapter {
     private fun DrawPath() {
         Canvas(modifier = Modifier.size(300.dp)) {
 
+            val x1 = 50.dp.toPx()
+            val y1 = 200.dp.toPx()
+            val x2 = 300.dp.toPx()
+            val y2 = 300.dp.toPx()
+
             val path = Path().apply {
                 moveTo(0f, 0f)
-                quadraticBezierTo(50.dp.toPx(), 200.dp.toPx(),
-                    300.dp.toPx(), 300.dp.toPx())
+                quadraticBezierTo(
+                    x1 = x1,
+                    y1 = y1,
+                    x2 = x2,
+                    y2 = y2
+                )
                 lineTo(270.dp.toPx(), 100.dp.toPx())
                 quadraticBezierTo(60.dp.toPx(), 80.dp.toPx(), 0f, 0f)
                 close()
             }
+
+            //x1
+            drawCircle(
+                color = Color.Red,
+                center = Offset(x1, y1),
+                radius = 10f
+            )
+
+            //x2
+            drawCircle(
+                color = Color.Magenta,
+                center = Offset(x2, y2),
+                radius = 10f
+            )
 
             drawPath(
                 path = path,
@@ -186,8 +230,8 @@ class CanvasChapter: Chapter {
         Canvas(modifier = Modifier.size(300.dp)) {
             drawArc(
                 Color.Blue,
-                startAngle = 20f,
-                sweepAngle = 90f,
+                startAngle = 0f,
+                sweepAngle = 355f,
                 useCenter = true,
                 size = Size(250.dp.toPx(), 250.dp.toPx())
             )
@@ -251,7 +295,7 @@ class CanvasChapter: Chapter {
             val brush = Brush.horizontalGradient(
                 colors = colorList,
                 startX = 0f,
-                endX = 300.dp.toPx(),
+                endX = 150.dp.toPx(),
                 tileMode = TileMode.Repeated
             )
 
@@ -295,14 +339,46 @@ class CanvasChapter: Chapter {
 
     @Composable
     private fun DrawRect() {
-        Canvas(modifier = Modifier.size(300.dp)) {
-            rotate(45f) {
+        Canvas(
+            modifier = Modifier.size(300.dp).background(Color.Yellow)
+        ) {
+            val x = size.height/2f
+            val y = size.width/2f
+            val topCenter = Offset(x, y)
+
+            rotate(0f) {
+                drawCircle(
+                    color = Color.Red,
+                    center = topCenter,
+                    radius = 10f
+                )
                 drawRect(
                     color = Color.Blue,
-                    topLeft = Offset(200f, 200f),
+                    topLeft = topCenter,
                     size = size / 2f
                 )
             }
+        }
+    }
+
+    @Composable
+    private fun DrawRect2() {
+        Canvas(
+            modifier = Modifier.size(300.dp).background(Color.Yellow)
+        ) {
+            val x = size.height/2f
+            val y = size.width/2f
+            val topCenter = Offset(x, y)
+
+            drawRoundRect(
+                color = Color.Blue,
+                topLeft = topCenter,
+                size = size / 2f,
+                cornerRadius = CornerRadius(
+                    x = 30.dp.toPx(),
+                    y = 30.dp.toPx(),
+                )
+            )
         }
     }
 
@@ -318,7 +394,24 @@ class CanvasChapter: Chapter {
                 color = Color.Blue,
                 strokeWidth = 16.0f,
                 pathEffect = PathEffect.dashPathEffect(
-                    floatArrayOf(30f, 10f, 10f, 10f), phase = 0f)
+                    intervals = floatArrayOf(30f, 10f, 10f, 10f),
+                    phase = 0.5f
+                )
+            )
+        }
+    }
+
+    @Composable
+    private fun DrawLine2() {
+        Canvas(modifier = Modifier.size(300.dp)) {
+            val height = size.height
+            val width = size.width
+
+            drawLine(
+                start = Offset(x= 0f, y = 0f),
+                end = Offset(x = width, y = height),
+                color = Color.Blue,
+                strokeWidth = 16.0f,
             )
         }
     }

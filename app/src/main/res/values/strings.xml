@@ -3,5 +3,5 @@
     <string name="row_column">Row/Column</string>
     <string name="animation">Animation</string>
     <string name="animation_spec">Animation Spec</string>
-    <string name="canvas">canvas</string>
+    <string name="canvas">Canvas</string>
 </resources>
