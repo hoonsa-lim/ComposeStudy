@@ -28,6 +28,7 @@ import com.hoonsalim.composestudy.animation.AnimationSpecChapter
 import com.hoonsalim.composestudy.canvas.CanvasChapter
 import com.hoonsalim.composestudy.row_column.RowColumnChapter
 import com.hoonsalim.composestudy.ui.theme.ComposeStudyTheme
+import com.hoonsalim.composestudy.viewmodel.ViewModelChapter
 
 class MainActivity : ComponentActivity() {
 
@@ -35,7 +36,8 @@ class MainActivity : ComponentActivity() {
         RowColumnChapter(),
         AnimationChapter(),
         AnimationSpecChapter(),
-        CanvasChapter()
+        CanvasChapter(),
+        ViewModelChapter(),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -22,6 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:exported="false"
+            android:name=".viewmodel.MvvmViewModelActivity">
+        </activity>
+        <activity
+            android:exported="false"
+            android:name=".viewmodel.AndroidViewModelActivity">
+        </activity>
     </application>
 
 </manifest>

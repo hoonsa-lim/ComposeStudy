@@ -4,4 +4,5 @@
     <string name="animation">Animation</string>
     <string name="animation_spec">Animation Spec</string>
     <string name="canvas">Canvas</string>
+    <string name="viewmodel">ViewModel</string>
 </resources>
